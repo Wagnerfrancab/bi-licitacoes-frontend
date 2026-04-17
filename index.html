@@ -1,124 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>BI Licitações — PNCP × Effecti</title>
 <style>
-  :root {
-    --primary: #1a56db;
-    --primary-dark: #1340a8;
-    --success: #057a55;
-    --warning: #b45309;
-    --danger: #c81e1e;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-500: #6b7280;
-    --gray-700: #374151;
-    --gray-900: #111827;
-    --radius: 8px;
-    --shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-50); color: var(--gray-900); }
+:root{
+  --primary:#1a56db;--primary-dark:#1340a8;--primary-light:#eff6ff;
+  --green:#057a55;--amber:#b45309;--red:#c81e1e;--purple:#5b21b6;
+  --g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;
+  --g500:#6b7280;--g700:#374151;--g900:#111827;
+  --r:8px;--sh:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--g50);color:var(--g900);font-size:14px}
 
-  /* ── Header ── */
-  header { background: var(--primary); color: #fff; padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
-  header h1 { font-size: 1.25rem; font-weight: 700; }
-  header .badges { display: flex; gap: 8px; margin-left: auto; }
-  .badge { font-size: .7rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; background: rgba(255,255,255,.2); }
-  .badge.ok   { background: #057a55; }
-  .badge.warn { background: #b45309; }
-  .badge.err  { background: #c81e1e; }
+/* Header */
+header{background:var(--primary);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:12px}
+header h1{font-size:1.1rem;font-weight:700}
+header .sub{font-size:.72rem;opacity:.75;margin-top:2px}
+.badges{display:flex;gap:6px;margin-left:auto;align-items:center}
+.badge{font-size:.68rem;font-weight:600;padding:3px 8px;border-radius:20px;background:rgba(255,255,255,.2)}
+.badge.ok{background:#057a55}.badge.err{background:#c81e1e}.badge.warn{background:#b45309}
 
-  /* ── Nav Tabs ── */
-  nav { background: #fff; border-bottom: 1px solid var(--gray-200); display: flex; overflow-x: auto; }
-  nav button { padding: 14px 20px; border: none; background: none; cursor: pointer; font-size: .875rem; font-weight: 500; color: var(--gray-500); white-space: nowrap; border-bottom: 3px solid transparent; transition: .15s; }
-  nav button.active { color: var(--primary); border-bottom-color: var(--primary); }
-  nav button:hover:not(.active) { color: var(--gray-700); background: var(--gray-50); }
+/* Nav */
+nav{background:#fff;border-bottom:1px solid var(--g200);display:flex;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{padding:12px 16px;border:none;background:none;cursor:pointer;font-size:.8rem;font-weight:500;color:var(--g500);white-space:nowrap;border-bottom:3px solid transparent;transition:.15s;display:flex;align-items:center;gap:5px}
+nav button.active{color:var(--primary);border-bottom-color:var(--primary)}
+nav button:hover:not(.active){color:var(--g700);background:var(--g50)}
 
-  /* ── Layout ── */
-  main { padding: 24px; max-width: 1400px; margin: 0 auto; }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+/* Layout */
+main{padding:20px;max-width:1440px;margin:0 auto}
+.tab-panel{display:none}.tab-panel.active{display:block}
 
-  /* ── Cards de Métricas ── */
-  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
-  .metric-card { background: #fff; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
-  .metric-card .label { font-size: .75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
-  .metric-card .value { font-size: 1.875rem; font-weight: 700; color: var(--gray-900); }
-  .metric-card .sub   { font-size: .75rem; color: var(--gray-500); margin-top: 4px; }
-  .metric-card.blue  .value { color: var(--primary); }
-  .metric-card.green .value { color: var(--success); }
-  .metric-card.amber .value { color: var(--warning); }
+/* Metric cards */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:20px}
+.mc{background:#fff;border-radius:var(--r);padding:16px;box-shadow:var(--sh);border-left:4px solid var(--g200)}
+.mc.blue{border-left-color:var(--primary)}.mc.green{border-left-color:var(--green)}
+.mc.amber{border-left-color:var(--amber)}.mc.purple{border-left-color:var(--purple)}
+.mc .lbl{font-size:.68rem;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.mc .val{font-size:1.6rem;font-weight:700;color:var(--g900);line-height:1}
+.mc .sub{font-size:.7rem;color:var(--g500);margin-top:4px}
 
-  /* ── Filtros ── */
-  .filters { background: #fff; border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
-  .filters label { font-size: .75rem; font-weight: 600; color: var(--gray-700); display: block; margin-bottom: 4px; }
-  .filters input, .filters select { border: 1px solid var(--gray-300); border-radius: var(--radius); padding: 8px 12px; font-size: .875rem; width: 100%; }
-  .filters input:focus, .filters select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,219,.15); }
-  .field { flex: 1; min-width: 160px; max-width: 260px; }
-  .field-wide { flex: 2; min-width: 260px; }
+/* Card / Panel */
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;margin-bottom:16px}
+.card-header{padding:14px 18px;border-bottom:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.card-header .title{font-weight:600;font-size:.875rem}
+.card-header .count{font-size:.75rem;color:var(--g500)}
+.card-body{padding:18px}
 
-  /* ── Botões ── */
-  .btn { padding: 9px 18px; border-radius: var(--radius); font-size: .875rem; font-weight: 600; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; transition: .15s; }
-  .btn-primary { background: var(--primary); color: #fff; }
-  .btn-primary:hover { background: var(--primary-dark); }
-  .btn-outline { background: #fff; color: var(--primary); border: 1px solid var(--primary); }
-  .btn-outline:hover { background: var(--gray-50); }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
+/* Filters */
+.filters{background:#fff;border-radius:var(--r);padding:14px 18px;box-shadow:var(--sh);margin-bottom:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.field{flex:1;min-width:140px;max-width:240px}
+.field-wide{flex:2;min-width:220px}
+.field label,.form-group label{font-size:.72rem;font-weight:600;color:var(--g700);display:block;margin-bottom:4px}
+.field input,.field select,.form-group input,.form-group select,.form-group textarea{
+  border:1px solid var(--g300);border-radius:var(--r);padding:7px 10px;font-size:.8rem;width:100%}
+.field input:focus,.field select:focus,.form-group input:focus,.form-group select:focus{
+  outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,86,219,.12)}
 
-  /* ── Tabela ── */
-  .table-wrap { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-  .table-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; }
-  .table-header .title { font-weight: 600; font-size: .9rem; }
-  .table-header .count { font-size: .8rem; color: var(--gray-500); }
-  table { width: 100%; border-collapse: collapse; font-size: .8rem; }
-  th { background: var(--gray-50); padding: 10px 12px; text-align: left; font-weight: 600; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gray-500); border-bottom: 1px solid var(--gray-200); }
-  td { padding: 10px 12px; border-bottom: 1px solid var(--gray-100); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--gray-50); }
+/* Buttons */
+.btn{padding:7px 16px;border-radius:var(--r);font-size:.8rem;font-weight:600;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:5px;transition:.15s;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}
+.btn-success{background:var(--green);color:#fff}.btn-success:hover{background:#046c4e}
+.btn-outline{background:#fff;color:var(--primary);border:1px solid var(--primary)}.btn-outline:hover{background:var(--primary-light)}
+.btn-ghost{background:transparent;color:var(--g500);border:1px solid var(--g300)}.btn-ghost:hover{background:var(--g50)}
+.btn-danger{background:#fff;color:var(--red);border:1px solid #fca5a5}.btn-danger:hover{background:#fee2e2}
+.btn-sm{padding:4px 10px;font-size:.72rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 
-  /* ── Pills ── */
-  .pill { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .7rem; font-weight: 600; }
-  .pill-blue   { background: #dbeafe; color: #1e40af; }
-  .pill-green  { background: #d1fae5; color: #065f46; }
-  .pill-amber  { background: #fef3c7; color: #92400e; }
-  .pill-red    { background: #fee2e2; color: #991b1b; }
-  .pill-gray   { background: var(--gray-100); color: var(--gray-700); }
-  .pill-purple { background: #ede9fe; color: #5b21b6; }
+/* Table */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th{background:var(--g50);padding:9px 12px;text-align:left;font-weight:600;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--g500);border-bottom:1px solid var(--g200);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--g100);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--g50)}
+.truncate{max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-  /* ── Status Cruzamento ── */
-  .cruzado-sim { color: var(--success); font-weight: 600; }
-  .cruzado-nao { color: var(--gray-400); }
+/* Pills */
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:600}
+.pill-blue{background:#dbeafe;color:#1e40af}.pill-green{background:#d1fae5;color:#065f46}
+.pill-amber{background:#fef3c7;color:#92400e}.pill-red{background:#fee2e2;color:#991b1b}
+.pill-gray{background:var(--g100);color:var(--g700)}.pill-purple{background:#ede9fe;color:#5b21b6}
 
-  /* ── Loader ── */
-  .loader { text-align: center; padding: 48px; color: var(--gray-500); }
-  .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--gray-200); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 12px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+/* Alerts */
+.alert{padding:10px 14px;border-radius:var(--r);font-size:.8rem;margin-bottom:14px;display:flex;align-items:flex-start;gap:8px}
+.alert-info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.alert-warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.alert-success{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}
+.alert-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
 
-  /* ── Alerta/Info boxes ── */
-  .alert { padding: 12px 16px; border-radius: var(--radius); font-size: .85rem; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 10px; }
-  .alert-info  { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
-  .alert-warn  { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
-  .alert-success { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
-  .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+/* Tag list */
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;min-height:32px}
+.tag{display:inline-flex;align-items:center;gap:4px;background:var(--primary-light);color:var(--primary);border:1px solid #bfdbfe;border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:500}
+.tag.equipment{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.tag .remove{cursor:pointer;font-size:.8rem;opacity:.6;line-height:1}.tag .remove:hover{opacity:1}
 
-  /* ── Painel de Alertas ── */
-  .alert-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media(max-width:640px){ .alert-form { grid-template-columns: 1fr; } }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label { font-size: .8rem; font-weight: 600; color: var(--gray-700); }
-  .form-group input, .form-group textarea { border: 1px solid var(--gray-300); border-radius: var(--radius); padding: 8px 12px; font-size: .875rem; resize: vertical; }
-  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,219,.15); }
+/* Competitor card */
+.concorrente-card{background:#fff;border:1px solid var(--g200);border-radius:var(--r);padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;transition:.15s}
+.concorrente-card:hover{border-color:var(--primary);box-shadow:var(--sh)}
+.cc-info .name{font-weight:600;font-size:.875rem;color:var(--g900)}
+.cc-info .cnpj{font-size:.72rem;font-family:monospace;color:var(--g500);margin-top:2px}
+.cc-info .meta{font-size:.72rem;color:var(--g500);margin-top:4px}
+.cc-stats{display:flex;gap:14px;align-items:center}
+.cc-stat{text-align:center}
+.cc-stat .sv{font-size:1rem;font-weight:700;color:var(--primary)}
+.cc-stat .sl{font-size:.65rem;color:var(--g500);white-space:nowrap}
 
-  /* ── Texto truncado ── */
-  .truncate { max-width: 280px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Search results */
+.search-result{border:1px solid var(--g200);border-radius:var(--r);padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff}
+.search-result:hover{border-color:var(--primary);background:var(--primary-light)}
+.sr-info .sr-name{font-weight:600;font-size:.8rem}
+.sr-info .sr-meta{font-size:.7rem;color:var(--g500);margin-top:2px}
 
-  /* ── Responsivo ── */
-  @media(max-width:768px){ .filters { gap: 8px; } .field { max-width: 100%; } table { font-size: .72rem; } }
+/* Loader */
+.loader{text-align:center;padding:40px;color:var(--g500)}
+.spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--g200);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Grid */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}.field{max-width:100%}}
+
+/* Empty state */
+.empty{text-align:center;padding:40px 20px;color:var(--g500)}
+.empty .icon{font-size:2rem;margin-bottom:8px}
+.empty .msg{font-size:.85rem}
 </style>
 </head>
 <body>
@@ -126,11 +136,13 @@
 <header>
   <div>
     <h1>📊 BI Licitações</h1>
-    <div style="font-size:.75rem;opacity:.8;margin-top:2px">PNCP × Effecti — Cruzamento de dados</div>
+    <div class="sub">PNCP × Effecti — v3.0</div>
   </div>
   <div class="badges">
-    <span class="badge" id="badge-pncp">PNCP ···</span>
-    <span class="badge" id="badge-effecti">Effecti ···</span>
+    <span class="badge" id="bdg-pncp">PNCP ···</span>
+    <span class="badge" id="bdg-eff">Effecti ···</span>
+    <span class="badge" id="bdg-kw" style="background:rgba(255,255,255,.15)">0 termos</span>
+    <span class="badge" id="bdg-cc" style="background:rgba(255,255,255,.15)">0 concorrentes</span>
   </div>
 </header>
 
@@ -138,807 +150,718 @@
   <button class="active" onclick="showTab('resumo')">🏠 Resumo</button>
   <button onclick="showTab('cruzamento')">🔀 Cruzamento</button>
   <button onclick="showTab('oportunidades')">🎯 Oportunidades</button>
+  <button onclick="showTab('concorrentes')">🏭 Concorrentes</button>
+  <button onclick="showTab('minha-lista')">📋 Minha Lista</button>
   <button onclick="showTab('monitoradas')">👁️ Monitoradas</button>
   <button onclick="showTab('propostas')">📝 Propostas</button>
-  <button onclick="showTab('concorrentes')">🏭 Concorrentes</button>
-  <button onclick="showTab('alertas')">🔔 Alertas</button>
   <button onclick="showTab('config')">⚙️ Config</button>
 </nav>
 
 <main>
 
-  <!-- ══════════ RESUMO ══════════ -->
-  <div id="tab-resumo" class="tab-panel active">
-    <div class="metrics" id="metrics-resumo">
-      <div class="metric-card blue"><div class="label">Contratações PNCP</div><div class="value" id="m-pncp">—</div><div class="sub">últimos 30 dias</div></div>
-      <div class="metric-card"><div class="label">Valor Total Estimado</div><div class="value" id="m-valor">—</div><div class="sub">PNCP (30 dias)</div></div>
-      <div class="metric-card green"><div class="label">Monitoradas (Effecti)</div><div class="value" id="m-mon">—</div><div class="sub">ativas no Effecti</div></div>
-      <div class="metric-card amber"><div class="label">Propostas Enviadas</div><div class="value" id="m-prop">—</div><div class="sub">via Effecti</div></div>
-      <div class="metric-card"><div class="label">Cobertura</div><div class="value" id="m-cob">—</div><div class="sub">% do PNCP monitorado</div></div>
-    </div>
+<!-- ══ RESUMO ══ -->
+<div id="tab-resumo" class="tab-panel active">
+  <div class="metrics" id="metrics-resumo">
+    <div class="mc blue"><div class="lbl">Contratações PNCP</div><div class="val" id="m-pncp">—</div><div class="sub">últimos 30 dias</div></div>
+    <div class="mc"><div class="lbl">Valor Total Est.</div><div class="val" id="m-valor">—</div><div class="sub">PNCP 30 dias</div></div>
+    <div class="mc green"><div class="lbl">Monitoradas Effecti</div><div class="val" id="m-mon">—</div><div class="sub">ativas no Effecti</div></div>
+    <div class="mc amber"><div class="lbl">Propostas Enviadas</div><div class="val" id="m-prop">—</div><div class="sub">via Effecti</div></div>
+    <div class="mc purple"><div class="lbl">Cobertura</div><div class="val" id="m-cob">—</div><div class="sub">% PNCP monitorado</div></div>
+  </div>
+  <div id="resumo-kw-wrap" style="display:none" class="card" style="margin-bottom:16px">
+    <div class="card-header"><span class="title">🎯 Oportunidades recentes pelos seus termos</span><button class="btn btn-outline btn-sm" onclick="showTab('oportunidades')">Ver todas →</button></div>
+    <div class="card-body" id="resumo-kw-body"></div>
+  </div>
+  <div id="resumo-loader" class="loader"><div class="spinner"></div><div>Carregando métricas…</div></div>
+</div>
 
-    <div class="alert alert-info">
-      <span class="alert-icon">ℹ️</span>
-      <div><strong>Como funciona o cruzamento?</strong> O sistema busca contratações no PNCP e verifica, via API Effecti, quais já estão monitoradas. A aba <em>Oportunidades</em> mostra editais que batem com suas palavras-chave mas ainda não foram adicionados ao Effecti.</div>
-    </div>
-
-    <div id="resumo-loader" class="loader">
-      <div class="spinner"></div>
-      <div>Carregando métricas consolidadas…</div>
+<!-- ══ CRUZAMENTO ══ -->
+<div id="tab-cruzamento" class="tab-panel">
+  <div class="filters">
+    <div class="field"><label>Data Inicial</label><input type="date" id="crz-ini"/></div>
+    <div class="field"><label>Data Final</label><input type="date" id="crz-fim"/></div>
+    <div class="field"><label>UF</label><select id="crz-uf"><option value="">Todos</option></select></div>
+    <div class="field-wide"><label>Palavra-chave (opcional)</label><input type="text" id="crz-q" placeholder="ex: equipamento hospitalar"/></div>
+    <button class="btn btn-primary" onclick="buscarCruzamento()">🔍 Buscar</button>
+  </div>
+  <div id="crz-loader" class="loader" style="display:none"><div class="spinner"></div><div>Cruzando PNCP × Effecti…</div></div>
+  <div class="card" id="crz-wrap" style="display:none">
+    <div class="card-header"><span class="title">Resultado PNCP × Effecti</span><span class="count" id="crz-count"></span></div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Nº Controle</th><th>Objeto</th><th>Órgão</th><th>UF</th><th>Modalidade</th><th>Valor Est.</th><th>Abertura</th><th>Status</th><th>Effecti</th><th>Proposta</th><th></th></tr></thead>
+      <tbody id="crz-body"></tbody></table>
     </div>
   </div>
+</div>
 
-  <!-- ══════════ CRUZAMENTO ══════════ -->
-  <div id="tab-cruzamento" class="tab-panel">
-    <div class="filters">
-      <div class="field">
-        <label>Data Inicial</label>
-        <input type="date" id="crz-inicio" />
-      </div>
-      <div class="field">
-        <label>Data Final</label>
-        <input type="date" id="crz-fim" />
-      </div>
-      <div class="field">
-        <label>UF</label>
-        <select id="crz-uf">
-          <option value="">Todos</option>
-          <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
-          <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
-          <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
-          <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
-          <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
-          <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
-          <option>SP</option><option>SE</option><option>TO</option>
-        </select>
-      </div>
-      <div class="field-wide">
-        <label>Palavra-chave (opcional)</label>
-        <input type="text" id="crz-q" placeholder="ex: equipamento hospitalar" />
-      </div>
-      <button class="btn btn-primary" onclick="buscarCruzamento()">🔍 Buscar</button>
+<!-- ══ OPORTUNIDADES ══ -->
+<div id="tab-oportunidades" class="tab-panel">
+  <div class="filters">
+    <div class="field-wide">
+      <label>Termos de busca (separados por vírgula)</label>
+      <input type="text" id="op-termos" placeholder="ex: software, TI, equipamento médico"/>
     </div>
-
-    <div id="cruzamento-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Cruzando dados PNCP × Effecti…</div>
+    <div class="field"><label>UF</label><select id="op-uf"><option value="">Todas</option></select></div>
+    <div class="field"><label>Período</label>
+      <select id="op-dias"><option value="7">7 dias</option><option value="14" selected>14 dias</option><option value="30">30 dias</option></select>
     </div>
-
-    <div class="table-wrap" id="cruzamento-wrap" style="display:none">
-      <div class="table-header">
-        <span class="title">Resultado do Cruzamento PNCP × Effecti</span>
-        <span class="count" id="cruzamento-count"></span>
+    <button class="btn btn-primary" onclick="buscarOportunidades()">🎯 Buscar</button>
+    <button class="btn btn-ghost" id="btn-usar-salvos" onclick="usarTermosSalvos()" title="Usar termos salvos em Minha Lista">📋 Usar Minha Lista</button>
+  </div>
+  <div id="op-loader" class="loader" style="display:none"><div class="spinner"></div><div>Buscando oportunidades…</div></div>
+  <div class="card" id="op-wrap" style="display:none">
+    <div class="card-header">
+      <span class="title">Oportunidades no PNCP</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span id="op-badge-nao" class="pill pill-amber"></span>
+        <span class="count" id="op-count"></span>
       </div>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Nº Controle</th>
-              <th>Objeto</th>
-              <th>Órgão</th>
-              <th>UF</th>
-              <th>Modalidade</th>
-              <th>Valor Est.</th>
-              <th>Abertura</th>
-              <th>Status PNCP</th>
-              <th>Effecti</th>
-              <th>Proposta</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="cruzamento-body"></tbody>
-        </table>
-      </div>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Termo</th><th>Objeto</th><th>Órgão</th><th>UF</th><th>Modalidade</th><th>Valor Est.</th><th>Abertura</th><th>Effecti</th><th></th></tr></thead>
+      <tbody id="op-body"></tbody></table>
     </div>
   </div>
+</div>
 
-  <!-- ══════════ OPORTUNIDADES ══════════ -->
-  <div id="tab-oportunidades" class="tab-panel">
-    <div class="alert alert-warn">
-      <span class="alert-icon">🎯</span>
-      <div>Exibe licitações do PNCP que batem com suas palavras-chave mas <strong>ainda não foram adicionadas ao Effecti</strong>. São suas oportunidades não capturadas.</div>
+<!-- ══ CONCORRENTES ══ -->
+<div id="tab-concorrentes" class="tab-panel">
+  <div class="grid-2" style="margin-bottom:16px">
+    <!-- Busca -->
+    <div class="card">
+      <div class="card-header"><span class="title">🔍 Adicionar Concorrente</span></div>
+      <div class="card-body">
+        <div class="form-group" style="margin-bottom:10px">
+          <label>Nome da empresa ou CNPJ</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="cc-busca" placeholder="ex: Empresa XYZ Ltda ou 00.000.000/0001-00" style="flex:1"/>
+            <button class="btn btn-primary" onclick="buscarEmpresa()">🔍 Buscar</button>
+          </div>
+        </div>
+        <div id="cc-busca-loader" class="loader" style="display:none;padding:20px"><div class="spinner"></div></div>
+        <div id="cc-resultados"></div>
+      </div>
     </div>
-
-    <div class="filters">
-      <div class="field-wide">
-        <label>Palavras-chave (separadas por vírgula) *</label>
-        <input type="text" id="op-kw" placeholder="ex: software, TI, informática, equipamento" />
-      </div>
-      <div class="field">
-        <label>UF</label>
-        <select id="op-uf">
-          <option value="">Todas</option>
-          <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
-          <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
-          <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
-          <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
-          <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
-          <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
-          <option>SP</option><option>SE</option><option>TO</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Período (dias atrás)</label>
-        <select id="op-dias">
-          <option value="7">7 dias</option>
-          <option value="14">14 dias</option>
-          <option value="30">30 dias</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" onclick="buscarOportunidades()">🎯 Identificar</button>
-    </div>
-
-    <div id="oport-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Identificando oportunidades não monitoradas…</div>
-    </div>
-
-    <div class="table-wrap" id="oport-wrap" style="display:none">
-      <div class="table-header">
-        <span class="title">Oportunidades não monitoradas no Effecti</span>
-        <span class="count" id="oport-count"></span>
-      </div>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Palavra-chave</th>
-              <th>Objeto</th>
-              <th>Órgão</th>
-              <th>UF</th>
-              <th>Modalidade</th>
-              <th>Valor Est.</th>
-              <th>Abertura</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="oport-body"></tbody>
-        </table>
+    <!-- Resumo lista -->
+    <div class="card">
+      <div class="card-header"><span class="title">📊 Resumo dos Concorrentes</span><button class="btn btn-outline btn-sm" onclick="analisarTodosConcorrentes()">↻ Atualizar</button></div>
+      <div class="card-body" id="cc-resumo-body">
+        <div class="empty"><div class="icon">🏭</div><div class="msg">Adicione concorrentes para ver o resumo comparativo</div></div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════ MONITORADAS ══════════ -->
-  <div id="tab-monitoradas" class="tab-panel">
-    <div class="filters">
-      <div class="field">
-        <label>Status</label>
-        <select id="mon-status">
-          <option value="">Todos</option>
-          <option value="MONITORANDO">Monitorando</option>
-          <option value="PARTICIPANDO">Participando</option>
-          <option value="ENCERRADO">Encerrado</option>
-          <option value="GANHO">Ganho</option>
-          <option value="PERDIDO">Perdido</option>
-        </select>
+  <!-- Lista de concorrentes salvos -->
+  <div class="card">
+    <div class="card-header">
+      <span class="title">🏭 Concorrentes Monitorados</span>
+      <div style="display:flex;gap:8px">
+        <span class="count" id="cc-lista-count"></span>
+        <button class="btn btn-outline btn-sm" onclick="analisarTodosConcorrentes()">🔄 Analisar todos</button>
       </div>
-      <button class="btn btn-primary" onclick="buscarMonitoradas()">🔄 Carregar</button>
+    </div>
+    <div class="card-body" id="cc-lista-body">
+      <div class="empty"><div class="icon">🏭</div><div class="msg">Nenhum concorrente adicionado ainda. Use a busca ao lado.</div></div>
+    </div>
+  </div>
+
+  <!-- Detalhe de contratos -->
+  <div class="card" id="cc-detalhe-wrap" style="display:none">
+    <div class="card-header"><span class="title" id="cc-detalhe-titulo">Contratos no PNCP</span><span class="count" id="cc-detalhe-count"></span></div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Nº Contrato</th><th>Objeto</th><th>Órgão</th><th>UF</th><th>Valor</th><th>Início Vig.</th><th></th></tr></thead>
+      <tbody id="cc-detalhe-body"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MINHA LISTA ══ -->
+<div id="tab-minha-lista" class="tab-panel">
+  <div class="grid-2">
+    <!-- Palavras-chave -->
+    <div class="card">
+      <div class="card-header"><span class="title">🔑 Palavras-chave &amp; Equipamentos</span><span class="count" id="kw-count-badge"></span></div>
+      <div class="card-body">
+        <div style="display:flex;gap:8px;margin-bottom:14px">
+          <input type="text" id="kw-input" placeholder="ex: software de gestão, equipamento cirúrgico…" style="flex:1;border:1px solid var(--g300);border-radius:var(--r);padding:7px 10px;font-size:.8rem" onkeydown="if(event.key==='Enter')addKw()"/>
+          <select id="kw-cat" style="border:1px solid var(--g300);border-radius:var(--r);padding:7px 10px;font-size:.8rem">
+            <option value="geral">🔑 Geral</option>
+            <option value="equipamento">🔧 Equipamento</option>
+            <option value="servico">🛠️ Serviço</option>
+          </select>
+          <button class="btn btn-success" onclick="addKw()">+ Adicionar</button>
+        </div>
+        <div id="kw-lista" class="tag-list">
+          <div style="color:var(--g500);font-size:.78rem">Nenhum termo adicionado ainda.</div>
+        </div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--g100);display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-primary btn-sm" onclick="showTab('oportunidades');usarTermosSalvos()">🎯 Buscar oportunidades agora</button>
+          <button class="btn btn-ghost btn-sm" onclick="limparKw()">🗑️ Limpar tudo</button>
+        </div>
+      </div>
     </div>
 
-    <div id="mon-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Carregando licitações monitoradas…</div>
-    </div>
-
-    <div class="table-wrap" id="mon-wrap" style="display:none">
-      <div class="table-header">
-        <span class="title">Licitações Monitoradas — Effecti</span>
-        <span class="count" id="mon-count"></span>
-      </div>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr><th>ID Effecti</th><th>Objeto/Título</th><th>Órgão</th><th>UF</th><th>Valor</th><th>Status Effecti</th><th>Ações</th></tr>
-          </thead>
-          <tbody id="mon-body"></tbody>
-        </table>
+    <!-- Concorrentes rápidos -->
+    <div class="card">
+      <div class="card-header"><span class="title">🏭 Concorrentes Salvos</span><span class="count" id="cc-count-badge"></span></div>
+      <div class="card-body">
+        <div class="alert alert-info" style="margin-bottom:12px">
+          <span class="alert-icon">ℹ️</span>
+          <div>Use a aba <strong>Concorrentes</strong> para adicionar empresas por nome ou CNPJ.</div>
+        </div>
+        <div id="cc-lista-mini"></div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--g100)">
+          <button class="btn btn-outline btn-sm" onclick="showTab('concorrentes')">➕ Adicionar concorrente</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════ PROPOSTAS ══════════ -->
-  <div id="tab-propostas" class="tab-panel">
-    <div class="filters">
-      <div class="field">
-        <label>Status</label>
-        <select id="prop-status">
-          <option value="">Todos</option>
-          <option value="ENVIADA">Enviada</option>
-          <option value="VENCEDORA">Vencedora</option>
-          <option value="PERDEDORA">Perdedora</option>
-          <option value="EM_ANALISE">Em Análise</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" onclick="buscarPropostas()">🔄 Carregar</button>
-    </div>
-
-    <div id="prop-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Carregando propostas…</div>
-    </div>
-
-    <div class="table-wrap" id="prop-wrap" style="display:none">
-      <div class="table-header">
-        <span class="title">Propostas Enviadas — Effecti</span>
-        <span class="count" id="prop-count"></span>
-      </div>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr><th>ID</th><th>Objeto</th><th>Órgão</th><th>Valor Proposta</th><th>Data Envio</th><th>Status</th></tr>
-          </thead>
-          <tbody id="prop-body"></tbody>
-        </table>
-      </div>
+  <!-- Importar/Exportar -->
+  <div class="card">
+    <div class="card-header"><span class="title">💾 Importar / Exportar configuração</span></div>
+    <div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-outline" onclick="exportarConfig()">📤 Exportar JSON</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('import-file').click()">📥 Importar JSON</button>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importarConfig(event)"/>
+      <span style="font-size:.75rem;color:var(--g500);align-self:center">Salva todos os seus termos e concorrentes</span>
     </div>
   </div>
+</div>
 
-  <!-- ══════════ CONCORRENTES ══════════ -->
-  <div id="tab-concorrentes" class="tab-panel">
-    <div class="alert alert-info">
-      <span class="alert-icon">🏭</span>
-      <div>Informe o CNPJ de um concorrente para ver os contratos firmados com o governo registrados no PNCP.</div>
+<!-- ══ MONITORADAS ══ -->
+<div id="tab-monitoradas" class="tab-panel">
+  <div class="filters">
+    <div class="field"><label>Status</label>
+      <select id="mon-status"><option value="">Todos</option><option value="MONITORANDO">Monitorando</option><option value="PARTICIPANDO">Participando</option><option value="ENCERRADO">Encerrado</option></select>
     </div>
-
-    <div class="filters">
-      <div class="field">
-        <label>CNPJ do Concorrente *</label>
-        <input type="text" id="conc-cnpj" placeholder="00.000.000/0001-00" maxlength="18" />
-      </div>
-      <div class="field">
-        <label>Período (dias atrás)</label>
-        <select id="conc-dias">
-          <option value="90">90 dias</option>
-          <option value="180">6 meses</option>
-          <option value="365">1 ano</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" onclick="buscarConcorrente()">🔍 Analisar</button>
-    </div>
-
-    <div id="conc-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Buscando contratos do concorrente no PNCP…</div>
-    </div>
-
-    <div class="table-wrap" id="conc-wrap" style="display:none">
-      <div class="table-header">
-        <span class="title">Contratos do Concorrente no PNCP</span>
-        <span class="count" id="conc-count"></span>
-      </div>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr><th>Nº Contrato</th><th>Objeto</th><th>Órgão</th><th>UF</th><th>Valor</th><th>Vigência</th><th>Ações</th></tr>
-          </thead>
-          <tbody id="conc-body"></tbody>
-        </table>
-      </div>
-    </div>
+    <button class="btn btn-primary" onclick="buscarMonitoradas()">🔄 Carregar</button>
   </div>
-
-  <!-- ══════════ ALERTAS ══════════ -->
-  <div id="tab-alertas" class="tab-panel">
-    <div class="alert alert-success">
-      <span class="alert-icon">🔔</span>
-      <div>Configure as palavras-chave e receba por e-mail todas as novas oportunidades do PNCP que ainda não estão no Effecti.</div>
-    </div>
-
-    <div class="table-wrap" style="padding:24px; margin-bottom:20px">
-      <div class="alert-form">
-        <div class="form-group" style="grid-column:1/-1">
-          <label>Palavras-chave (separadas por vírgula) *</label>
-          <input type="text" id="alerta-kw" placeholder="ex: software, TI, informática, licença, sistema" />
-        </div>
-        <div class="form-group">
-          <label>E-mail de destino *</label>
-          <input type="email" id="alerta-email" placeholder="seu@email.com.br" />
-        </div>
-        <div class="form-group">
-          <label>Valor mínimo (R$)</label>
-          <input type="number" id="alerta-vmin" placeholder="0" min="0" step="1000" />
-        </div>
-        <div class="form-group">
-          <label>Valor máximo (R$)</label>
-          <input type="number" id="alerta-vmax" placeholder="sem limite" min="0" step="1000" />
-        </div>
-        <div class="form-group">
-          <label>UFs de interesse (separadas por vírgula)</label>
-          <input type="text" id="alerta-ufs" placeholder="SP, RJ, MG (deixe vazio para todas)" />
-        </div>
-      </div>
-      <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap">
-        <button class="btn btn-primary" onclick="verificarAlertas()">🔔 Verificar agora e enviar alerta</button>
-        <button class="btn btn-outline" onclick="salvarConfigAlerta()">💾 Salvar configuração</button>
-      </div>
-    </div>
-
-    <div id="alerta-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Verificando oportunidades das últimas 24h…</div>
-    </div>
-
-    <div id="alerta-result" style="display:none"></div>
+  <div id="mon-loader" class="loader" style="display:none"><div class="spinner"></div></div>
+  <div class="card" id="mon-wrap" style="display:none">
+    <div class="card-header"><span class="title">Monitoradas — Effecti</span><span class="count" id="mon-count"></span></div>
+    <div class="table-wrap"><table><thead><tr><th>ID</th><th>Objeto</th><th>Órgão</th><th>UF</th><th>Valor</th><th>Status</th></tr></thead>
+    <tbody id="mon-body"></tbody></table></div>
   </div>
+</div>
 
-  <!-- ══════════ CONFIG ══════════ -->
-  <div id="tab-config" class="tab-panel">
-    <div class="table-wrap" style="padding:24px; margin-bottom:20px">
-      <h3 style="margin-bottom:16px; font-size:1rem">⚙️ Configurações da API</h3>
-      <div class="alert-form">
-        <div class="form-group">
-          <label>URL do Backend (Railway)</label>
-          <input type="text" id="cfg-backend" placeholder="https://talented-light-production.up.railway.app" />
-        </div>
-        <div class="form-group">
-          <label>Effecti API URL</label>
-          <input type="text" id="cfg-effecti-url" placeholder="https://api.effecti.com.br" />
-        </div>
+<!-- ══ PROPOSTAS ══ -->
+<div id="tab-propostas" class="tab-panel">
+  <div class="filters">
+    <div class="field"><label>Status</label>
+      <select id="prop-status"><option value="">Todos</option><option value="ENVIADA">Enviada</option><option value="VENCEDORA">Vencedora</option><option value="PERDEDORA">Perdedora</option></select>
+    </div>
+    <button class="btn btn-primary" onclick="buscarPropostas()">🔄 Carregar</button>
+  </div>
+  <div id="prop-loader" class="loader" style="display:none"><div class="spinner"></div></div>
+  <div class="card" id="prop-wrap" style="display:none">
+    <div class="card-header"><span class="title">Propostas — Effecti</span><span class="count" id="prop-count"></span></div>
+    <div class="table-wrap"><table><thead><tr><th>ID</th><th>Objeto</th><th>Órgão</th><th>Valor Proposta</th><th>Data Envio</th><th>Status</th></tr></thead>
+    <tbody id="prop-body"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══ CONFIG ══ -->
+<div id="tab-config" class="tab-panel">
+  <div class="card">
+    <div class="card-header"><span class="title">⚙️ Configurações</span></div>
+    <div class="card-body">
+      <div class="grid-2" style="margin-bottom:14px">
+        <div class="form-group"><label>URL do Backend (Railway)</label>
+          <input type="text" id="cfg-backend" placeholder="https://talented-light-production.up.railway.app"/></div>
+        <div class="form-group"><label>Effecti API URL</label>
+          <input type="text" id="cfg-effecti" placeholder="https://api.effecti.com.br"/></div>
       </div>
-      <div style="margin-top:16px; display:flex; gap:12px">
+      <div style="display:flex;gap:10px">
         <button class="btn btn-primary" onclick="salvarConfig()">💾 Salvar</button>
-        <button class="btn btn-outline" onclick="testarConexoes()">🔌 Testar Conexões</button>
+        <button class="btn btn-outline" onclick="testarConexoes()">🔌 Testar conexões</button>
       </div>
     </div>
-
-    <div id="status-loader" class="loader" style="display:none">
-      <div class="spinner"></div><div>Testando conexões…</div>
-    </div>
-
-    <div id="status-result" style="display:none" class="table-wrap" style="padding:20px"></div>
-
-    <div class="table-wrap" style="padding:24px; margin-top:20px">
-      <h3 style="margin-bottom:12px; font-size:1rem">🔌 Endpoints disponíveis</h3>
-      <table>
-        <thead><tr><th>Endpoint</th><th>Descrição</th><th>Fonte</th></tr></thead>
-        <tbody>
-          <tr><td><code>GET /health</code></td><td>Health check do backend</td><td><span class="pill pill-blue">Backend</span></td></tr>
-          <tr><td><code>GET /cruzamento/licitacoes</code></td><td>Cruzamento PNCP × Effecti</td><td><span class="pill pill-purple">Ambos</span></td></tr>
-          <tr><td><code>GET /cruzamento/resumo</code></td><td>Métricas consolidadas</td><td><span class="pill pill-purple">Ambos</span></td></tr>
-          <tr><td><code>GET /cruzamento/oportunidades</code></td><td>Oportunidades não monitoradas</td><td><span class="pill pill-purple">Ambos</span></td></tr>
-          <tr><td><code>GET /cruzamento/concorrentes</code></td><td>Análise de concorrente por CNPJ</td><td><span class="pill pill-blue">PNCP</span></td></tr>
-          <tr><td><code>GET /pncp/contratacoes</code></td><td>Contratações publicadas no PNCP</td><td><span class="pill pill-blue">PNCP</span></td></tr>
-          <tr><td><code>GET /pncp/contratos</code></td><td>Contratos do PNCP</td><td><span class="pill pill-blue">PNCP</span></td></tr>
-          <tr><td><code>GET /effecti/licitacoes</code></td><td>Licitações monitoradas</td><td><span class="pill pill-green">Effecti</span></td></tr>
-          <tr><td><code>GET /effecti/propostas</code></td><td>Propostas enviadas</td><td><span class="pill pill-green">Effecti</span></td></tr>
-          <tr><td><code>GET /effecti/palavras-chave</code></td><td>Palavras-chave/segmentos</td><td><span class="pill pill-green">Effecti</span></td></tr>
-          <tr><td><code>GET /effecti/fornecedores</code></td><td>Fornecedores/concorrentes</td><td><span class="pill pill-green">Effecti</span></td></tr>
-          <tr><td><code>GET /effecti/status</code></td><td>Diagnóstico endpoints Effecti</td><td><span class="pill pill-green">Effecti</span></td></tr>
-          <tr><td><code>POST /alertas/verificar</code></td><td>Verificar e enviar alertas</td><td><span class="pill pill-amber">E-mail</span></td></tr>
-        </tbody>
-      </table>
+  </div>
+  <div id="cfg-result" style="display:none"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-header"><span class="title">📡 Endpoints disponíveis (v3.0)</span></div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Endpoint</th><th>Descrição</th><th>Fonte</th></tr></thead><tbody>
+        <tr><td><code>/health</code></td><td>Health check</td><td><span class="pill pill-blue">API</span></td></tr>
+        <tr><td><code>/busca/empresa</code></td><td>Busca empresa por nome ou CNPJ</td><td><span class="pill pill-purple">PNCP+Receita</span></td></tr>
+        <tr><td><code>/concorrente/analise</code></td><td>Análise completa por CNPJ</td><td><span class="pill pill-purple">PNCP+Effecti</span></td></tr>
+        <tr><td><code>/concorrentes/multiplos</code></td><td>Comparativo de múltiplos</td><td><span class="pill pill-purple">PNCP</span></td></tr>
+        <tr><td><code>/oportunidades/busca</code></td><td>Busca por múltiplos termos</td><td><span class="pill pill-purple">PNCP+Effecti</span></td></tr>
+        <tr><td><code>/cruzamento/licitacoes</code></td><td>Cruzamento completo</td><td><span class="pill pill-purple">PNCP×Effecti</span></td></tr>
+        <tr><td><code>/cruzamento/resumo</code></td><td>Métricas consolidadas</td><td><span class="pill pill-purple">PNCP×Effecti</span></td></tr>
+        <tr><td><code>/effecti/licitacoes</code></td><td>Monitoradas Effecti</td><td><span class="pill pill-green">Effecti</span></td></tr>
+        <tr><td><code>/effecti/propostas</code></td><td>Propostas Effecti</td><td><span class="pill pill-green">Effecti</span></td></tr>
+      </tbody></table>
     </div>
   </div>
+</div>
 
 </main>
 
 <script>
-// ── Configuração ─────────────────────────────────────────────────────────────
-const CFG_KEY = 'bi_licitacoes_cfg';
-function getCfg() {
-  try { return JSON.parse(localStorage.getItem(CFG_KEY) || '{}'); } catch { return {}; }
-}
-function getBackend() {
-  return getCfg().backend || 'https://talented-light-production.up.railway.app';
+// ══ Config & Storage ══════════════════════════════════════════════════════════
+const S = {
+  get:(k,d={})=>{try{return JSON.parse(localStorage.getItem('bl_'+k)||'null')??d}catch{return d}},
+  set:(k,v)=>localStorage.setItem('bl_'+k,JSON.stringify(v)),
+};
+const getCfg = ()=>S.get('cfg',{});
+const getBackend = ()=>(getCfg().backend||'https://talented-light-production.up.railway.app').replace(/\/$/,'');
+const getKW  = ()=>S.get('kw',[]);
+const getCC  = ()=>S.get('cc',[]);
+const saveKW = v=>{ S.set('kw',v); renderKW(); updateBadges(); };
+const saveCC = v=>{ S.set('cc',v); renderCCMini(); updateBadges(); };
+
+// ══ Helpers ═══════════════════════════════════════════════════════════════════
+const fmtR = v=>v==null?'—':new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
+const fmtD = s=>{if(!s)return'—';const d=s.substring(0,10).split('-');return d.length===3?`${d[2]}/${d[1]}/${d[0]}`:s};
+const hoje = ()=>new Date().toISOString().substring(0,10);
+const diasAtras = n=>{const d=new Date();d.setDate(d.getDate()-n);return d.toISOString().substring(0,10)};
+const numeros  = s=>(s||'').replace(/\D/g,'');
+
+function statusPill(s){
+  if(!s)return'<span class="pill pill-gray">—</span>';
+  const l=s.toLowerCase();
+  if(l.includes('divulg')||l.includes('public')||l.includes('aberto'))return`<span class="pill pill-green">${s}</span>`;
+  if(l.includes('cancel')||l.includes('revog')||l.includes('perdido'))return`<span class="pill pill-red">${s}</span>`;
+  if(l.includes('ganho')||l.includes('vencedor'))return`<span class="pill pill-green">${s}</span>`;
+  if(l.includes('monitor'))return`<span class="pill pill-blue">${s}</span>`;
+  if(l.includes('particip'))return`<span class="pill pill-purple">${s}</span>`;
+  return`<span class="pill pill-amber">${s}</span>`;
 }
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-function fmtMoeda(v) {
-  if (!v && v !== 0) return '—';
-  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(v);
-}
-function fmtData(s) {
-  if (!s) return '—';
-  const d = s.replace('T', ' ').substring(0, 10);
-  if (!d || d.length < 8) return s;
-  const [y, m, di] = d.split('-');
-  return di ? `${di}/${m}/${y}` : s;
-}
-function hoje() {
-  return new Date().toISOString().substring(0, 10);
-}
-function diasAtras(n) {
-  const d = new Date(); d.setDate(d.getDate() - n);
-  return d.toISOString().substring(0, 10);
-}
-function statusPill(s) {
-  if (!s) return '<span class="pill pill-gray">—</span>';
-  const sl = s.toLowerCase();
-  if (sl.includes('divulg') || sl.includes('public') || sl.includes('aberto')) return `<span class="pill pill-green">${s}</span>`;
-  if (sl.includes('cancel') || sl.includes('revog') || sl.includes('perdido')) return `<span class="pill pill-red">${s}</span>`;
-  if (sl.includes('encerr') || sl.includes('homolog')) return `<span class="pill pill-gray">${s}</span>`;
-  if (sl.includes('ganho') || sl.includes('vencedor')) return `<span class="pill pill-green">${s}</span>`;
-  if (sl.includes('monitor')) return `<span class="pill pill-blue">${s}</span>`;
-  if (sl.includes('particip')) return `<span class="pill pill-purple">${s}</span>`;
-  return `<span class="pill pill-amber">${s}</span>`;
-}
-async function apiFetch(path, params = {}) {
-  const base = getBackend().replace(/\/$/, '');
-  const qs = new URLSearchParams(Object.fromEntries(Object.entries(params).filter(([,v]) => v !== '' && v !== null && v !== undefined)));
-  const url = `${base}${path}${qs.toString() ? '?' + qs : ''}`;
-  const resp = await fetch(url);
-  if (!resp.ok) { const t = await resp.text(); throw new Error(`${resp.status}: ${t.substring(0,150)}`); }
-  return resp.json();
-}
-function showError(containerId, msg) {
-  document.getElementById(containerId).innerHTML =
-    `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${msg}</div></div>`;
-  document.getElementById(containerId).style.display = 'block';
+async function api(path,params={}){
+  const qs=new URLSearchParams(Object.fromEntries(Object.entries(params).filter(([,v])=>v!==''&&v!=null)));
+  const url=`${getBackend()}${path}${qs.toString()?'?'+qs:''}`;
+  const r=await fetch(url);
+  if(!r.ok){const t=await r.text();throw new Error(`${r.status}: ${t.substring(0,120)}`)}
+  return r.json();
 }
 
-// ── Navegação ─────────────────────────────────────────────────────────────────
-function showTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  const idx = ['resumo','cruzamento','oportunidades','monitoradas','propostas','concorrentes','alertas','config'];
-  document.querySelectorAll('nav button')[idx.indexOf(name)].classList.add('active');
+// Populate UF selects
+(()=>{const ufs=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+['crz-uf','op-uf'].forEach(id=>{const el=document.getElementById(id);ufs.forEach(u=>{const o=document.createElement('option');o.value=o.text=u;el.appendChild(o)})})})();
+
+// ══ Nav ═══════════════════════════════════════════════════════════════════════
+const TABS=['resumo','cruzamento','oportunidades','concorrentes','minha-lista','monitoradas','propostas','config'];
+function showTab(name){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name)?.classList.add('active');
+  document.querySelectorAll('nav button')[TABS.indexOf(name)]?.classList.add('active');
 }
 
-// ── Badges de status ──────────────────────────────────────────────────────────
-async function verificarStatus() {
-  try {
-    const h = await apiFetch('/health');
-    document.getElementById('badge-pncp').textContent = 'PNCP ✓';
-    document.getElementById('badge-pncp').className = 'badge ok';
-    if (h.integrations?.includes('Effecti')) {
-      document.getElementById('badge-effecti').textContent = 'Effecti ✓';
-      document.getElementById('badge-effecti').className = 'badge ok';
+// ══ Badges ════════════════════════════════════════════════════════════════════
+function updateBadges(){
+  const kw=getKW(), cc=getCC();
+  document.getElementById('bdg-kw').textContent=`${kw.length} termos`;
+  document.getElementById('bdg-cc').textContent=`${cc.length} concorrentes`;
+}
+
+async function verificarStatus(){
+  try{
+    const h=await api('/health');
+    document.getElementById('bdg-pncp').textContent='PNCP ✓';
+    document.getElementById('bdg-pncp').className='badge ok';
+    document.getElementById('bdg-eff').textContent=`Effecti (v${h.version})`;
+    document.getElementById('bdg-eff').className='badge ok';
+  }catch{
+    document.getElementById('bdg-pncp').textContent='Backend ✗';
+    document.getElementById('bdg-pncp').className='badge err';
+  }
+}
+
+// ══ Resumo ════════════════════════════════════════════════════════════════════
+async function carregarResumo(){
+  try{
+    const d=await api('/cruzamento/resumo');
+    document.getElementById('m-pncp').textContent=(d.pncp?.total_contratacoes??'—').toLocaleString('pt-BR');
+    document.getElementById('m-valor').textContent=fmtR(d.pncp?.valor_total_estimado);
+    document.getElementById('m-mon').textContent=(d.effecti?.total_monitoradas??'—').toLocaleString('pt-BR');
+    document.getElementById('m-prop').textContent=(d.effecti?.total_propostas??'—').toLocaleString('pt-BR');
+    document.getElementById('m-cob').textContent=(d.cruzamento?.cobertura_percentual??'—')+'%';
+    if(!d.effecti?.conectado){document.getElementById('bdg-eff').textContent='Effecti ✗';document.getElementById('bdg-eff').className='badge err';}
+  }catch(e){
+    document.getElementById('resumo-loader').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro: ${e.message}</div></div>`;
+  } finally{ document.getElementById('resumo-loader').style.display='none'; }
+
+  // Mini preview com termos salvos
+  const kw=getKW();
+  if(kw.length>0){
+    document.getElementById('resumo-kw-wrap').style.display='block';
+    const termos=kw.slice(0,5).map(k=>k.termo).join(',');
+    try{
+      const r=await api('/oportunidades/busca',{termos,data_inicial:diasAtras(7).replace(/-/g,''),tamanho:5});
+      const items=(r.oportunidades||[]).slice(0,5);
+      if(items.length>0){
+        document.getElementById('resumo-kw-body').innerHTML=`
+          <div style="font-size:.75rem;color:var(--g500);margin-bottom:8px">${r.nao_monitoradas||0} não monitoradas nos últimos 7 dias</div>
+          ${items.map(i=>`<div style="padding:6px 0;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <div><span class="pill pill-blue" style="margin-right:4px">${i.termo}</span><span style="font-size:.78rem">${(i.objeto||'').substring(0,70)}…</span></div>
+            <div style="display:flex;gap:6px;align-items:center;white-space:nowrap">
+              <span style="font-size:.72rem;color:var(--g500)">${i.uf||''}</span>
+              ${i.monitorada_effecti?'<span class="pill pill-green">✓ Effecti</span>':'<span class="pill pill-amber">Novo</span>'}
+              <a href="${i.link}" target="_blank" class="btn btn-ghost btn-sm">🔗</a>
+            </div>
+          </div>`).join('')}`;
+      }else{
+        document.getElementById('resumo-kw-body').innerHTML='<div style="color:var(--g500);font-size:.78rem">Nenhuma oportunidade nos últimos 7 dias para os seus termos.</div>';
+      }
+    }catch{}
+  }
+}
+
+// ══ Cruzamento ════════════════════════════════════════════════════════════════
+async function buscarCruzamento(){
+  const p={data_inicial:document.getElementById('crz-ini').value.replace(/-/g,''),
+            data_final:document.getElementById('crz-fim').value.replace(/-/g,''),
+            uf:document.getElementById('crz-uf').value,
+            palavras_chave:document.getElementById('crz-q').value,pagina:1,tamanho:50};
+  document.getElementById('crz-loader').style.display='block';
+  document.getElementById('crz-wrap').style.display='none';
+  try{
+    const items=await api('/cruzamento/licitacoes',p);
+    const arr=Array.isArray(items)?items:(items.data||[]);
+    document.getElementById('crz-count').textContent=`${arr.length} resultado(s)`;
+    document.getElementById('crz-body').innerHTML=arr.map(i=>`<tr>
+      <td style="font-size:.7rem;font-family:monospace">${(i.numero_controle||i.id_pncp||'—').substring(0,30)}</td>
+      <td class="truncate" title="${i.objeto||''}">${i.objeto||'—'}</td>
+      <td class="truncate" style="max-width:140px" title="${i.orgao||''}">${i.orgao||'—'}</td>
+      <td>${i.uf||'—'}</td><td><span class="pill pill-gray">${i.modalidade||'—'}</span></td>
+      <td style="white-space:nowrap">${fmtR(i.valor_estimado)}</td>
+      <td style="white-space:nowrap">${fmtD(i.data_abertura)}</td>
+      ${statusPill(i.status_pncp)}
+      <td>${i.monitorada?'<span class="pill pill-green">✅ Sim</span>':'<span class="pill pill-gray">—</span>'}</td>
+      <td>${i.tem_proposta?'<span class="pill pill-green">✓</span>':'<span class="pill pill-gray">—</span>'}</td>
+      <td><a href="https://pncp.gov.br/app/editais/${i.numero_controle||''}" target="_blank" class="btn btn-ghost btn-sm">🔗</a></td>
+    </tr>`).join('');
+    document.getElementById('crz-wrap').style.display='block';
+  }catch(e){
+    document.getElementById('crz-loader').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;
+  }finally{document.getElementById('crz-loader').style.display='none';}
+}
+
+// ══ Oportunidades ═════════════════════════════════════════════════════════════
+function usarTermosSalvos(){
+  const kw=getKW();
+  if(kw.length===0){alert('Nenhum termo salvo em Minha Lista.');return;}
+  document.getElementById('op-termos').value=kw.map(k=>k.termo).join(', ');
+}
+
+async function buscarOportunidades(){
+  const termos=document.getElementById('op-termos').value.trim();
+  const uf=document.getElementById('op-uf').value;
+  const dias=parseInt(document.getElementById('op-dias').value);
+  if(!termos){alert('Informe pelo menos um termo.');return;}
+  document.getElementById('op-loader').style.display='block';
+  document.getElementById('op-wrap').style.display='none';
+  try{
+    const d=await api('/oportunidades/busca',{termos,uf,data_inicial:diasAtras(dias).replace(/-/g,''),data_final:hoje().replace(/-/g,''),tamanho:25});
+    const arr=d.oportunidades||[];
+    document.getElementById('op-count').textContent=`${arr.length} resultado(s)`;
+    document.getElementById('op-badge-nao').textContent=arr.filter(i=>!i.monitorada_effecti).length+' não monitoradas';
+    document.getElementById('op-body').innerHTML=arr.length===0
+      ?'<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--g500)">Nenhum resultado encontrado.</td></tr>'
+      :arr.map(i=>`<tr>
+        <td><span class="pill pill-blue">${i.termo}</span></td>
+        <td class="truncate" title="${i.objeto||''}">${i.objeto||'—'}</td>
+        <td class="truncate" style="max-width:140px">${i.orgao||'—'}</td>
+        <td>${i.uf||'—'}</td><td><span class="pill pill-gray">${i.modalidade||'—'}</span></td>
+        <td style="white-space:nowrap">${fmtR(i.valor_estimado)}</td>
+        <td style="white-space:nowrap">${fmtD(i.data_abertura)}</td>
+        <td>${i.monitorada_effecti?'<span class="pill pill-green">✅</span>':'<span class="pill pill-amber">Novo</span>'}</td>
+        <td><a href="${i.link}" target="_blank" class="btn btn-ghost btn-sm">🔗</a></td>
+      </tr>`).join('');
+    document.getElementById('op-wrap').style.display='block';
+  }catch(e){
+    document.getElementById('op-loader').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;
+  }finally{document.getElementById('op-loader').style.display='none';}
+}
+
+// ══ Concorrentes ══════════════════════════════════════════════════════════════
+async function buscarEmpresa(){
+  const q=document.getElementById('cc-busca').value.trim();
+  if(!q){alert('Digite um nome ou CNPJ.');return;}
+  document.getElementById('cc-busca-loader').style.display='block';
+  document.getElementById('cc-resultados').innerHTML='';
+  try{
+    const d=await api('/busca/empresa',{q,data_inicial:diasAtras(365).replace(/-/g,''),data_final:hoje().replace(/-/g,'')});
+    const empresas=d.empresas||[];
+    if(empresas.length===0){
+      document.getElementById('cc-resultados').innerHTML='<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Nenhuma empresa encontrada. Tente um termo diferente.</div></div>';
+      return;
     }
-  } catch {
-    document.getElementById('badge-pncp').textContent = 'Backend ✗';
-    document.getElementById('badge-pncp').className = 'badge err';
+    document.getElementById('cc-resultados').innerHTML=empresas.map(e=>`
+      <div class="search-result">
+        <div class="sr-info">
+          <div class="sr-name">${e.nome||e.cnpj}</div>
+          <div class="sr-meta">CNPJ: ${fmtCNPJ(e.cnpj)} ${e.municipio?'· '+e.municipio+'/'+e.uf:''} ${e.total_contratos_pncp?'· '+e.total_contratos_pncp+' contrato(s) PNCP':''}</div>
+          ${e.atividade_principal?`<div class="sr-meta">${e.atividade_principal}</div>`:''}
+        </div>
+        <button class="btn btn-success btn-sm" onclick='adicionarConcorrente(${JSON.stringify({cnpj:e.cnpj,nome:e.nome||e.cnpj,uf:e.uf,municipio:e.municipio})})'>+ Monitorar</button>
+      </div>`).join('');
+  }catch(e){
+    document.getElementById('cc-resultados').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;
+  }finally{document.getElementById('cc-busca-loader').style.display='none';}
+}
+
+function fmtCNPJ(c){if(!c||c.length!==14)return c||'—';return`${c.substring(0,2)}.${c.substring(2,5)}.${c.substring(5,8)}/${c.substring(8,12)}-${c.substring(12)}`;}
+
+function adicionarConcorrente(empresa){
+  const lista=getCC();
+  if(lista.find(c=>c.cnpj===empresa.cnpj)){alert('Concorrente já está na lista!');return;}
+  lista.push({...empresa,adicionado_em:new Date().toISOString(),total_contratos:null,valor_total:null});
+  saveCC(lista);
+  renderCC();
+  document.getElementById('cc-resultados').innerHTML=`<div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>${empresa.nome}</strong> adicionado com sucesso!</div></div>`;
+  document.getElementById('cc-busca').value='';
+}
+
+function removerConcorrente(cnpj){
+  if(!confirm('Remover este concorrente da lista?'))return;
+  saveCC(getCC().filter(c=>c.cnpj!==cnpj));
+  renderCC();
+}
+
+function renderCC(){
+  const lista=getCC();
+  document.getElementById('cc-lista-count').textContent=`${lista.length} concorrente(s)`;
+  if(lista.length===0){
+    document.getElementById('cc-lista-body').innerHTML='<div class="empty"><div class="icon">🏭</div><div class="msg">Nenhum concorrente adicionado ainda.</div></div>';
+    return;
+  }
+  document.getElementById('cc-lista-body').innerHTML=lista.map(c=>`
+    <div class="concorrente-card" style="margin-bottom:8px">
+      <div class="cc-info">
+        <div class="name">${c.nome}</div>
+        <div class="cnpj">${fmtCNPJ(c.cnpj)}</div>
+        <div class="meta">${[c.municipio,c.uf].filter(Boolean).join('/')}${c.total_contratos!=null?' · '+c.total_contratos+' contratos PNCP':''}</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+        ${c.valor_total!=null?`<div class="cc-stat"><div class="sv">${fmtR(c.valor_total)}</div><div class="sl">valor total</div></div>`:''}
+        <button class="btn btn-outline btn-sm" onclick='verContratos("${c.cnpj}","${c.nome.replace(/"/g,"'")}");'>📋 Contratos</button>
+        <button class="btn btn-danger btn-sm" onclick='removerConcorrente("${c.cnpj}")'>✕</button>
+      </div>
+    </div>`).join('');
+  renderCCMini();
+}
+
+function renderCCMini(){
+  const lista=getCC();
+  document.getElementById('cc-count-badge').textContent=`${lista.length}`;
+  document.getElementById('cc-lista-mini').innerHTML=lista.length===0
+    ?'<div style="color:var(--g500);font-size:.78rem">Nenhum concorrente salvo.</div>'
+    :lista.map(c=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--g100)">
+      <div><div style="font-size:.8rem;font-weight:500">${c.nome}</div><div style="font-size:.7rem;color:var(--g500)">${fmtCNPJ(c.cnpj)}</div></div>
+      <button class="btn btn-danger btn-sm" onclick='removerConcorrente("${c.cnpj}")'>✕</button>
+    </div>`).join('');
+}
+
+async function verContratos(cnpj, nome){
+  document.getElementById('cc-detalhe-titulo').textContent=`📋 Contratos de ${nome} no PNCP`;
+  document.getElementById('cc-detalhe-wrap').style.display='block';
+  document.getElementById('cc-detalhe-body').innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px"><div class="spinner" style="margin:auto"></div></td></tr>';
+  document.getElementById('cc-detalhe-wrap').scrollIntoView({behavior:'smooth'});
+  try{
+    const d=await api('/concorrente/analise',{cnpj,data_inicial:diasAtras(365).replace(/-/g,''),data_final:hoje().replace(/-/g,'')});
+    const contratos=d.contratos_pncp?.itens||[];
+    document.getElementById('cc-detalhe-count').textContent=`${contratos.length} contrato(s) — total ${fmtR(d.contratos_pncp?.valor_total)}`;
+
+    // Atualizar stats na lista local
+    const lista=getCC();
+    const idx=lista.findIndex(c=>c.cnpj===cnpj);
+    if(idx>=0){lista[idx].total_contratos=contratos.length;lista[idx].valor_total=d.contratos_pncp?.valor_total;saveCC(lista);}
+
+    document.getElementById('cc-detalhe-body').innerHTML=contratos.length===0
+      ?'<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--g500)">Nenhum contrato encontrado no período.</td></tr>'
+      :contratos.map(c=>`<tr>
+        <td style="font-size:.7rem;font-family:monospace">${c.numeroContratoEmpenho||c.id||'—'}</td>
+        <td class="truncate">${c.objetoContrato||c.objeto||'—'}</td>
+        <td class="truncate" style="max-width:140px">${(c.orgaoEntidade?.razaoSocial||c.nomeOrgao||'—')}</td>
+        <td>${c.uf||'—'}</td>
+        <td style="white-space:nowrap">${fmtR(c.valorInicial||c.valorGlobal)}</td>
+        <td style="white-space:nowrap">${fmtD(c.dataVigenciaInicio)}</td>
+        <td><a href="https://pncp.gov.br/app/contratos/${c.id||''}" target="_blank" class="btn btn-ghost btn-sm">🔗</a></td>
+      </tr>`).join('');
+    renderCC();
+  }catch(e){
+    document.getElementById('cc-detalhe-body').innerHTML=`<tr><td colspan="7"><div class="alert alert-warn">${e.message}</div></td></tr>`;
   }
 }
 
-// ── Resumo ───────────────────────────────────────────────────────────────────
-async function carregarResumo() {
-  try {
-    const data = await apiFetch('/cruzamento/resumo');
-    document.getElementById('m-pncp').textContent = data.pncp?.total_contratacoes?.toLocaleString('pt-BR') ?? '—';
-    document.getElementById('m-valor').textContent = fmtMoeda(data.pncp?.valor_total_estimado);
-    document.getElementById('m-mon').textContent = data.effecti?.total_monitoradas?.toLocaleString('pt-BR') ?? '—';
-    document.getElementById('m-prop').textContent = data.effecti?.total_propostas?.toLocaleString('pt-BR') ?? '—';
-    document.getElementById('m-cob').textContent = (data.cruzamento?.cobertura_percentual ?? '—') + '%';
+async function analisarTodosConcorrentes(){
+  const lista=getCC();
+  if(lista.length===0){alert('Nenhum concorrente na lista.');return;}
+  document.getElementById('cc-resumo-body').innerHTML='<div class="loader" style="padding:20px"><div class="spinner"></div></div>';
+  try{
+    const cnpjs=lista.map(c=>c.cnpj).join(',');
+    const d=await api('/concorrentes/multiplos',{cnpjs,data_inicial:diasAtras(365).replace(/-/g,''),data_final:hoje().replace(/-/g,'')});
+    const cs=d.concorrentes||[];
 
-    if (!data.effecti?.conectado) {
-      document.querySelector('#tab-resumo .metrics').insertAdjacentHTML('afterend',
-        `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>
-          <strong>Effecti não conectado.</strong> Os dados de licitações monitoradas e propostas estão indisponíveis.
-          Acesse a aba <em>Config</em> e verifique a URL da API Effecti.
-        </div></div>`);
-      document.getElementById('badge-effecti').textContent = 'Effecti ✗';
-      document.getElementById('badge-effecti').className = 'badge err';
-    } else {
-      document.getElementById('badge-effecti').textContent = 'Effecti ✓';
-      document.getElementById('badge-effecti').className = 'badge ok';
-    }
-  } catch (e) {
-    showError('resumo-loader', `Erro ao carregar resumo: ${e.message}`);
-  } finally {
-    document.getElementById('resumo-loader').style.display = 'none';
+    // Atualizar dados locais
+    const local=getCC();
+    cs.forEach(r=>{const i=local.findIndex(c=>c.cnpj===r.cnpj);if(i>=0){local[i].total_contratos=r.total_contratos;local[i].valor_total=r.valor_total;}});
+    saveCC(local);
+
+    document.getElementById('cc-resumo-body').innerHTML=`
+      <div style="margin-bottom:10px;font-size:.75rem;color:var(--g500)">Período: últimos 12 meses</div>
+      ${cs.map((c,i)=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--g100)">
+          <div style="font-size:.85rem;font-weight:700;color:var(--g300);min-width:20px">#${i+1}</div>
+          <div style="flex:1">
+            <div style="font-weight:600;font-size:.82rem">${c.nome}</div>
+            <div style="font-size:.7rem;color:var(--g500)">${fmtCNPJ(c.cnpj)} ${c.municipio?'· '+c.municipio+'/'+c.uf:''}</div>
+          </div>
+          <div style="text-align:right;white-space:nowrap">
+            <div style="font-weight:700;color:var(--primary)">${fmtR(c.valor_total)}</div>
+            <div style="font-size:.7rem;color:var(--g500)">${c.total_contratos} contrato(s)</div>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick='verContratos("${c.cnpj}","${c.nome.replace(/"/g,"'")}");showTab("concorrentes")'>Ver</button>
+        </div>`).join('')}`;
+  }catch(e){
+    document.getElementById('cc-resumo-body').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;
   }
 }
 
-// ── Cruzamento ────────────────────────────────────────────────────────────────
-async function buscarCruzamento() {
-  const inicio = document.getElementById('crz-inicio').value;
-  const fim    = document.getElementById('crz-fim').value;
-  const uf     = document.getElementById('crz-uf').value;
-  const q      = document.getElementById('crz-q').value;
-
-  document.getElementById('cruzamento-loader').style.display = 'block';
-  document.getElementById('cruzamento-wrap').style.display = 'none';
-
-  try {
-    const items = await apiFetch('/cruzamento/licitacoes', {
-      data_inicial: inicio ? inicio.replace(/-/g,'') : '',
-      data_final:   fim    ? fim.replace(/-/g,'')    : '',
-      uf, palavras_chave: q, pagina: 1, tamanho: 50
-    });
-
-    const arr = Array.isArray(items) ? items : (items.data || items.content || []);
-    document.getElementById('cruzamento-count').textContent = `${arr.length} resultado(s)`;
-
-    document.getElementById('cruzamento-body').innerHTML = arr.map(i => `
-      <tr>
-        <td style="font-size:.7rem;font-family:monospace">${i.numero_controle || i.id_pncp || '—'}</td>
-        <td class="truncate" title="${i.objeto || ''}">${i.objeto || '—'}</td>
-        <td class="truncate" style="max-width:160px" title="${i.orgao || ''}">${i.orgao || '—'}</td>
-        <td>${i.uf || '—'}</td>
-        <td><span class="pill pill-gray">${i.modalidade || '—'}</span></td>
-        <td style="white-space:nowrap">${fmtMoeda(i.valor_estimado)}</td>
-        <td style="white-space:nowrap">${fmtData(i.data_abertura)}</td>
-        <td>${statusPill(i.status_pncp)}</td>
-        <td>${i.monitorada ? '<span class="cruzado-sim">✅ Sim</span>' : '<span class="cruzado-nao">—</span>'}</td>
-        <td>${i.tem_proposta ? '<span class="pill pill-green">✓</span>' : '<span class="pill pill-gray">—</span>'}</td>
-        <td><a href="https://pncp.gov.br/app/editais/${i.numero_controle || ''}" target="_blank" class="btn btn-outline" style="padding:4px 8px;font-size:.7rem">🔗 PNCP</a></td>
-      </tr>
-    `).join('');
-
-    document.getElementById('cruzamento-wrap').style.display = 'block';
-  } catch (e) {
-    document.getElementById('cruzamento-loader').innerHTML =
-      `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro: ${e.message}</div></div>`;
-  } finally {
-    document.getElementById('cruzamento-loader').style.display = 'none';
-  }
+// ══ Minha Lista — Palavras-chave ══════════════════════════════════════════════
+function addKw(){
+  const input=document.getElementById('kw-input');
+  const cat=document.getElementById('kw-cat').value;
+  const termos=input.value.split(',').map(t=>t.trim()).filter(Boolean);
+  if(!termos.length){alert('Digite pelo menos um termo.');return;}
+  const lista=getKW();
+  termos.forEach(t=>{
+    if(!lista.find(k=>k.termo.toLowerCase()===t.toLowerCase()))
+      lista.push({id:Date.now()+Math.random(),termo:t,categoria:cat,adicionado_em:new Date().toISOString()});
+  });
+  saveKW(lista);
+  input.value='';
 }
 
-// ── Oportunidades ─────────────────────────────────────────────────────────────
-async function buscarOportunidades() {
-  const kw   = document.getElementById('op-kw').value.trim();
-  const uf   = document.getElementById('op-uf').value;
-  const dias = parseInt(document.getElementById('op-dias').value);
-  if (!kw) { alert('Informe pelo menos uma palavra-chave.'); return; }
-
-  document.getElementById('oport-loader').style.display = 'block';
-  document.getElementById('oport-wrap').style.display = 'none';
-
-  try {
-    const data = await apiFetch('/cruzamento/oportunidades', {
-      palavras_chave: kw,
-      uf,
-      data_inicial: diasAtras(dias).replace(/-/g,''),
-      data_final: hoje().replace(/-/g,''),
-      tamanho: 30
-    });
-
-    const arr = data.oportunidades || [];
-    document.getElementById('oport-count').textContent = `${arr.length} oportunidade(s) não monitorada(s)`;
-
-    document.getElementById('oport-body').innerHTML = arr.map(i => `
-      <tr>
-        <td><span class="pill pill-blue">${i.termo_busca}</span></td>
-        <td class="truncate" title="${i.objeto || ''}">${i.objeto || '—'}</td>
-        <td class="truncate" style="max-width:160px">${i.orgao || '—'}</td>
-        <td>${i.uf || '—'}</td>
-        <td><span class="pill pill-gray">${i.modalidade || '—'}</span></td>
-        <td style="white-space:nowrap">${fmtMoeda(i.valor_estimado)}</td>
-        <td style="white-space:nowrap">${fmtData(i.data_abertura)}</td>
-        <td><a href="${i.link_pncp}" target="_blank" class="btn btn-outline" style="padding:4px 8px;font-size:.7rem">🔗 Abrir</a></td>
-      </tr>
-    `).join('');
-
-    document.getElementById('oport-wrap').style.display = 'block';
-  } catch (e) {
-    document.getElementById('oport-loader').innerHTML =
-      `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro: ${e.message}</div></div>`;
-  } finally {
-    document.getElementById('oport-loader').style.display = 'none';
-  }
+function removeKw(id){
+  saveKW(getKW().filter(k=>String(k.id)!==String(id)));
 }
 
-// ── Monitoradas ───────────────────────────────────────────────────────────────
-async function buscarMonitoradas() {
-  const status = document.getElementById('mon-status').value;
-  document.getElementById('mon-loader').style.display = 'block';
-  document.getElementById('mon-wrap').style.display = 'none';
-
-  try {
-    const data = await apiFetch('/effecti/licitacoes', { status, pagina: 1, tamanho: 100 });
-    const arr  = Array.isArray(data) ? data : (data.data || data.content || data.items || []);
-    document.getElementById('mon-count').textContent = `${arr.length} licitação(ões)`;
-
-    if (arr.length === 0) {
-      document.getElementById('mon-body').innerHTML =
-        '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--gray-500)">Nenhum dado retornado pelo Effecti. Verifique a URL da API na aba Config.</td></tr>';
-    } else {
-      document.getElementById('mon-body').innerHTML = arr.map(i => `
-        <tr>
-          <td style="font-family:monospace;font-size:.7rem">${i.id || '—'}</td>
-          <td class="truncate">${i.objeto || i.titulo || i.descricao || '—'}</td>
-          <td class="truncate" style="max-width:160px">${i.orgao || i.nomeOrgao || '—'}</td>
-          <td>${i.uf || '—'}</td>
-          <td>${fmtMoeda(i.valor || i.valorEstimado)}</td>
-          <td>${statusPill(i.status || i.situacao)}</td>
-          <td><button class="btn btn-outline" style="padding:4px 8px;font-size:.7rem" onclick="cruzarComPNCP('${i.numeroControle || i.id}')">🔀 PNCP</button></td>
-        </tr>
-      `).join('');
-    }
-    document.getElementById('mon-wrap').style.display = 'block';
-  } catch (e) {
-    document.getElementById('mon-loader').innerHTML =
-      `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro Effecti: ${e.message}</div></div>`;
-  } finally {
-    document.getElementById('mon-loader').style.display = 'none';
-  }
+function limparKw(){
+  if(confirm('Remover todos os termos?')){saveKW([]);}
 }
 
-// ── Propostas ─────────────────────────────────────────────────────────────────
-async function buscarPropostas() {
-  const status = document.getElementById('prop-status').value;
-  document.getElementById('prop-loader').style.display = 'block';
-  document.getElementById('prop-wrap').style.display = 'none';
-
-  try {
-    const data = await apiFetch('/effecti/propostas', { status, pagina: 1, tamanho: 100 });
-    const arr  = Array.isArray(data) ? data : (data.data || data.content || data.items || []);
-    document.getElementById('prop-count').textContent = `${arr.length} proposta(s)`;
-
-    if (arr.length === 0) {
-      document.getElementById('prop-body').innerHTML =
-        '<tr><td colspan="6" style="text-align:center;padding:32px;color:var(--gray-500)">Nenhuma proposta retornada pelo Effecti.</td></tr>';
-    } else {
-      document.getElementById('prop-body').innerHTML = arr.map(i => `
-        <tr>
-          <td style="font-family:monospace;font-size:.7rem">${i.id || '—'}</td>
-          <td class="truncate">${i.objeto || i.titulo || '—'}</td>
-          <td class="truncate" style="max-width:160px">${i.orgao || '—'}</td>
-          <td>${fmtMoeda(i.valor || i.valorProposta)}</td>
-          <td>${fmtData(i.dataEnvio || i.createdAt)}</td>
-          <td>${statusPill(i.status || i.situacao)}</td>
-        </tr>
-      `).join('');
-    }
-    document.getElementById('prop-wrap').style.display = 'block';
-  } catch (e) {
-    document.getElementById('prop-loader').innerHTML =
-      `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro Effecti: ${e.message}</div></div>`;
-  } finally {
-    document.getElementById('prop-loader').style.display = 'none';
-  }
+function renderKW(){
+  const lista=getKW();
+  document.getElementById('kw-count-badge').textContent=`${lista.length}`;
+  const el=document.getElementById('kw-lista');
+  if(lista.length===0){el.innerHTML='<div style="color:var(--g500);font-size:.78rem">Nenhum termo adicionado ainda.</div>';return;}
+  el.innerHTML=lista.map(k=>`
+    <span class="tag${k.categoria==='equipamento'?' equipment':''}">
+      ${k.categoria==='equipamento'?'🔧':k.categoria==='servico'?'🛠️':'🔑'} ${k.termo}
+      <span class="remove" onclick='removeKw("${k.id}")'> ✕</span>
+    </span>`).join('');
 }
 
-// ── Concorrentes ──────────────────────────────────────────────────────────────
-async function buscarConcorrente() {
-  const cnpj = document.getElementById('conc-cnpj').value.replace(/\D/g, '');
-  const dias = parseInt(document.getElementById('conc-dias').value);
-  if (cnpj.length !== 14) { alert('CNPJ inválido — informe 14 dígitos.'); return; }
-
-  document.getElementById('conc-loader').style.display = 'block';
-  document.getElementById('conc-wrap').style.display = 'none';
-
-  try {
-    const data = await apiFetch('/cruzamento/concorrentes', {
-      cnpj_concorrente: cnpj,
-      data_inicial: diasAtras(dias).replace(/-/g,''),
-      data_final: hoje().replace(/-/g,''),
-    });
-    const raw = data.contratos_pncp || {};
-    const arr = Array.isArray(raw) ? raw : (raw.data || raw.content || raw.items || []);
-    document.getElementById('conc-count').textContent = `${arr.length} contrato(s) encontrado(s)`;
-
-    document.getElementById('conc-body').innerHTML = arr.length === 0
-      ? '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--gray-500)">Nenhum contrato encontrado para este CNPJ no período.</td></tr>'
-      : arr.map(i => `
-        <tr>
-          <td style="font-family:monospace;font-size:.7rem">${i.numeroContratoEmpenho || i.id || '—'}</td>
-          <td class="truncate">${i.objetoContrato || i.objeto || '—'}</td>
-          <td class="truncate" style="max-width:160px">${i.nomeOrgao || i.orgaoEntidade?.razaoSocial || '—'}</td>
-          <td>${i.uf || '—'}</td>
-          <td>${fmtMoeda(i.valorInicial || i.valorGlobal)}</td>
-          <td style="white-space:nowrap">${fmtData(i.dataVigenciaInicio)} → ${fmtData(i.dataVigenciaFim)}</td>
-          <td><a href="https://pncp.gov.br/app/contratos/${i.id || ''}" target="_blank" class="btn btn-outline" style="padding:4px 8px;font-size:.7rem">🔗</a></td>
-        </tr>
-      `).join('');
-
-    document.getElementById('conc-wrap').style.display = 'block';
-  } catch (e) {
-    document.getElementById('conc-loader').innerHTML =
-      `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro: ${e.message}</div></div>`;
-  } finally {
-    document.getElementById('conc-loader').style.display = 'none';
-  }
+// ══ Monitoradas e Propostas ═══════════════════════════════════════════════════
+async function buscarMonitoradas(){
+  document.getElementById('mon-loader').style.display='block';
+  document.getElementById('mon-wrap').style.display='none';
+  try{
+    const d=await api('/effecti/licitacoes',{status:document.getElementById('mon-status').value,pagina:1,tamanho:100});
+    const arr=Array.isArray(d)?d:(d.data||d.content||d.items||[]);
+    document.getElementById('mon-count').textContent=`${arr.length}`;
+    document.getElementById('mon-body').innerHTML=arr.length===0
+      ?'<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--g500)">Nenhum dado retornado pelo Effecti.</td></tr>'
+      :arr.map(i=>`<tr><td style="font-size:.7rem;font-family:monospace">${i.id||'—'}</td>
+        <td class="truncate">${i.objeto||i.titulo||i.descricao||'—'}</td>
+        <td class="truncate" style="max-width:130px">${i.orgao||i.nomeOrgao||'—'}</td>
+        <td>${i.uf||'—'}</td><td>${fmtR(i.valor||i.valorEstimado)}</td>
+        <td>${statusPill(i.status||i.situacao)}</td></tr>`).join('');
+    document.getElementById('mon-wrap').style.display='block';
+  }catch(e){document.getElementById('mon-loader').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;}
+  finally{document.getElementById('mon-loader').style.display='none';}
 }
 
-// ── Alertas ───────────────────────────────────────────────────────────────────
-async function verificarAlertas() {
-  const kw    = document.getElementById('alerta-kw').value.trim();
-  const email = document.getElementById('alerta-email').value.trim();
-  const vmin  = parseFloat(document.getElementById('alerta-vmin').value) || null;
-  const vmax  = parseFloat(document.getElementById('alerta-vmax').value) || null;
-  const ufs   = document.getElementById('alerta-ufs').value.split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
-  if (!kw)    { alert('Informe as palavras-chave.'); return; }
-  if (!email) { alert('Informe o e-mail de destino.'); return; }
-
-  document.getElementById('alerta-loader').style.display = 'block';
-  document.getElementById('alerta-result').style.display = 'none';
-
-  try {
-    const resp = await fetch(getBackend().replace(/\/$/, '') + '/alertas/verificar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        palavras_chave: kw.split(',').map(s => s.trim()).filter(Boolean),
-        email_destino: email,
-        valor_min: vmin, valor_max: vmax, ufs,
-      })
-    });
-    const data = await resp.json();
-    const el = document.getElementById('alerta-result');
-    if (data.novas_oportunidades > 0) {
-      el.innerHTML = `<div class="alert alert-success"><span class="alert-icon">✅</span>
-        <div><strong>${data.novas_oportunidades} nova(s) oportunidade(s) encontrada(s).</strong>
-        ${data.alerta_enviado ? ' E-mail enviado!' : ' Ative o SMTP no Railway para enviar e-mails.'}
-        </div></div>`;
-    } else {
-      el.innerHTML = `<div class="alert alert-info"><span class="alert-icon">ℹ️</span>
-        <div>Nenhuma oportunidade nova nas últimas 24h para as palavras-chave informadas.</div></div>`;
-    }
-    el.style.display = 'block';
-  } catch (e) {
-    document.getElementById('alerta-result').innerHTML =
-      `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro: ${e.message}</div></div>`;
-    document.getElementById('alerta-result').style.display = 'block';
-  } finally {
-    document.getElementById('alerta-loader').style.display = 'none';
-  }
+async function buscarPropostas(){
+  document.getElementById('prop-loader').style.display='block';
+  document.getElementById('prop-wrap').style.display='none';
+  try{
+    const d=await api('/effecti/propostas',{status:document.getElementById('prop-status').value,pagina:1,tamanho:100});
+    const arr=Array.isArray(d)?d:(d.data||d.content||d.items||[]);
+    document.getElementById('prop-count').textContent=`${arr.length}`;
+    document.getElementById('prop-body').innerHTML=arr.length===0
+      ?'<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--g500)">Nenhuma proposta retornada.</td></tr>'
+      :arr.map(i=>`<tr><td style="font-size:.7rem;font-family:monospace">${i.id||'—'}</td>
+        <td class="truncate">${i.objeto||i.titulo||'—'}</td>
+        <td class="truncate" style="max-width:130px">${i.orgao||'—'}</td>
+        <td>${fmtR(i.valor||i.valorProposta)}</td>
+        <td>${fmtD(i.dataEnvio||i.createdAt)}</td>
+        <td>${statusPill(i.status||i.situacao)}</td></tr>`).join('');
+    document.getElementById('prop-wrap').style.display='block';
+  }catch(e){document.getElementById('prop-loader').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;}
+  finally{document.getElementById('prop-loader').style.display='none';}
 }
 
-function salvarConfigAlerta() {
-  const cfg = getCfg();
-  cfg.alerta_kw    = document.getElementById('alerta-kw').value;
-  cfg.alerta_email = document.getElementById('alerta-email').value;
-  localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
-  alert('Configuração de alerta salva!');
-}
-
-// ── Config ────────────────────────────────────────────────────────────────────
-function salvarConfig() {
-  const backend = document.getElementById('cfg-backend').value.trim();
-  const effectiUrl = document.getElementById('cfg-effecti-url').value.trim();
-  const cfg = getCfg();
-  if (backend) cfg.backend = backend;
-  if (effectiUrl) cfg.effecti_url = effectiUrl;
-  localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+// ══ Config ════════════════════════════════════════════════════════════════════
+function salvarConfig(){
+  const b=document.getElementById('cfg-backend').value.trim();
+  const e=document.getElementById('cfg-effecti').value.trim();
+  const c=getCfg();
+  if(b)c.backend=b; if(e)c.effecti_url=e;
+  S.set('cfg',c);
   alert('Configurações salvas! Recarregue a página para aplicar.');
 }
 
-async function testarConexoes() {
-  document.getElementById('status-loader').style.display = 'block';
-  document.getElementById('status-result').style.display = 'none';
-
-  try {
-    const [health, effectiStatus] = await Promise.allSettled([
-      apiFetch('/health'),
-      apiFetch('/effecti/status')
-    ]);
-
-    const el = document.getElementById('status-result');
-    let html = '<div style="padding:20px">';
-
-    html += '<h4 style="margin-bottom:12px">🩺 Backend (Railway)</h4>';
-    if (health.status === 'fulfilled') {
-      html += `<div class="alert alert-success"><span class="alert-icon">✅</span><div>Backend online — ${health.value.version} — ${health.value.timestamp}</div></div>`;
-    } else {
-      html += `<div class="alert alert-warn"><span class="alert-icon">❌</span><div>Backend offline: ${health.reason?.message}</div></div>`;
+async function testarConexoes(){
+  document.getElementById('cfg-result').style.display='block';
+  document.getElementById('cfg-result').innerHTML='<div class="loader" style="padding:20px"><div class="spinner"></div></div>';
+  try{
+    const [h,eff]=await Promise.allSettled([api('/health'),api('/effecti/status')]);
+    let html='<div class="card"><div class="card-body">';
+    html+=`<div class="alert ${h.status==='fulfilled'?'alert-success':'alert-warn'}"><span class="alert-icon">${h.status==='fulfilled'?'✅':'❌'}</span><div>`;
+    html+=h.status==='fulfilled'?`Backend OK — v${h.value.version} — ${h.value.timestamp}`:`Backend OFFLINE: ${h.reason?.message}`;
+    html+='</div></div>';
+    if(eff.status==='fulfilled'){
+      const s=eff.value;
+      html+=`<div style="font-size:.78rem;color:var(--g500);margin-bottom:8px">Effecti URL: <code>${s.effecti_api_url}</code></div><div style="display:flex;flex-wrap:wrap;gap:6px">`;
+      Object.entries(s.endpoints||{}).forEach(([p,i])=>{html+=`<span class="pill ${i.ok?'pill-green':'pill-red'}">${p.split('/').pop()}: ${i.status}</span>`;});
+      html+='</div>';
     }
-
-    html += '<h4 style="margin-top:16px;margin-bottom:12px">🔌 Effecti API</h4>';
-    if (effectiStatus.status === 'fulfilled') {
-      const s = effectiStatus.value;
-      html += `<p style="font-size:.8rem;color:var(--gray-500);margin-bottom:8px">URL: <code>${s.effecti_api_url}</code> | Company: ${s.company_id}</p>`;
-      html += '<table><thead><tr><th>Endpoint</th><th>Status</th></tr></thead><tbody>';
-      for (const [path, info] of Object.entries(s.endpoints || {})) {
-        const ok = info.ok;
-        html += `<tr><td><code>${path}</code></td><td>${ok
-          ? '<span class="pill pill-green">✓ ' + info.status + '</span>'
-          : '<span class="pill pill-red">✗ ' + info.status + '</span>'}</td></tr>`;
-      }
-      html += '</tbody></table>';
-    } else {
-      html += `<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>Erro ao testar Effecti: ${effectiStatus.reason?.message}</div></div>`;
-    }
-
-    html += '</div>';
-    el.innerHTML = html;
-    el.style.display = 'block';
-  } finally {
-    document.getElementById('status-loader').style.display = 'none';
-  }
+    html+='</div></div>';
+    document.getElementById('cfg-result').innerHTML=html;
+  }catch(e){document.getElementById('cfg-result').innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>${e.message}</div></div>`;}
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
-(function init() {
+// ══ Import/Export ════════════════════════════════════════════════════════════
+function exportarConfig(){
+  const data={kw:getKW(),cc:getCC(),exportado_em:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`bi-licitacoes-config-${hoje()}.json`; a.click();
+}
+function importarConfig(ev){
+  const file=ev.target.files[0]; if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    try{
+      const d=JSON.parse(e.target.result);
+      if(d.kw)saveKW(d.kw);
+      if(d.cc)saveCC(d.cc);
+      renderCC(); renderKW(); updateBadges();
+      alert(`Importado: ${(d.kw||[]).length} termos, ${(d.cc||[]).length} concorrentes.`);
+    }catch{alert('Arquivo JSON inválido.');}
+  };
+  r.readAsText(file);
+}
+
+// ══ Init ═════════════════════════════════════════════════════════════════════
+(function init(){
   // Datas padrão
-  const ini = diasAtras(14);
-  const fim = hoje();
-  document.getElementById('crz-inicio').value = ini;
-  document.getElementById('crz-fim').value = fim;
-
-  // Restaurar config salva
-  const cfg = getCfg();
-  if (cfg.backend) document.getElementById('cfg-backend').value = cfg.backend;
-  if (cfg.effecti_url) document.getElementById('cfg-effecti-url').value = cfg.effecti_url;
-  if (cfg.alerta_kw) document.getElementById('alerta-kw').value = cfg.alerta_kw;
-  if (cfg.alerta_email) document.getElementById('alerta-email').value = cfg.alerta_email;
-
-  // Inicializar
+  document.getElementById('crz-ini').value=diasAtras(14);
+  document.getElementById('crz-fim').value=hoje();
+  // Restaurar config
+  const cfg=getCfg();
+  if(cfg.backend)document.getElementById('cfg-backend').value=cfg.backend;
+  if(cfg.effecti_url)document.getElementById('cfg-effecti').value=cfg.effecti_url;
+  // Renderizar listas salvas
+  renderKW(); renderCC(); updateBadges();
+  // Carregar dados
   verificarStatus();
   carregarResumo();
 })();
